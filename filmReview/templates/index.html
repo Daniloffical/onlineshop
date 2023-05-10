@@ -1,0 +1,32 @@
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="{% static 'jquery-3.6.4.js' %}"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    {% for film in films %}
+      <div class="film">
+        <p>{{ film.name }}</p>
+        <p>{{ film.year }}</p>
+        <img src="{{ film.img.url }}">
+      </div>
+    {% endfor %}
+    <div class='modal_window'>
+      <form id="form" onsubmit="return false;">
+        {% csrf_token %}
+        <div id="cross">&Cross;</div>
+        <h1>Будь ласка, дайте відгук нашому сайту</h1>
+        <input type="text" name="name" placeholder="Ваше ім'я" id="form_name">
+        <textarea cols="30" name="reply" rows="2" placeholder="Ваш відгук" id="form_reply"></textarea>
+        <input type="submit" value="Надіслати">
+      </form>
+      <input hidden class="url_get" value="{% url 'url_get' %}">
+    </div>
+<script src="{% static 'script.js' %}"></script>
+
+  </body>
+</html>
